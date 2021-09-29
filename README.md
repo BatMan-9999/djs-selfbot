@@ -1,3 +1,5 @@
+<h1>⚠ Selfbotting is against the Discord ToS. If you get caught selfbotting, your account will be terminated. ⚠</h1>
+
 <div align="center">
   <br />
   <p>
