@@ -6,20 +6,20 @@ const { Error, RangeError, TypeError } = require('../errors');
 let useragent = `DiscordBot (${Package.homepage.split('#')[0]}, ${Package.version}) Node.js/${process.version}`;
 
 exports.superproperties = {
-  'os': 'Windows',
-  'browser': 'Chrome',
-  'device': '',
-  'browser_user_agent': useragent,
-  'os_version': '10',
-  'referrer': '',
-  'referring_domain': '',
-  'referrer_current': '',
-  'referring_domain_current': '',
-  'release_channel': 'stable',
-  'system_locale': 'en-US',
-  'client_event_source': null
-}
-exports.soupproperties = Buffer.from(JSON.stringify(exports.superproperties)).toString("base64");
+  os: 'Windows',
+  browser: 'Chrome',
+  device: '',
+  browser_user_agent: useragent,
+  os_version: '10',
+  referrer: '',
+  referring_domain: '',
+  referrer_current: '',
+  referring_domain_current: '',
+  release_channel: 'stable',
+  system_locale: 'en-US',
+  client_event_source: null,
+};
+exports.soupproperties = Buffer.from(JSON.stringify(exports.superproperties)).toString('base64');
 exports.UserAgent = useragent;
 
 exports.WSCodes = {
@@ -368,8 +368,6 @@ exports.InviteScopes = [
   'gdm.join',
   'webhook.incoming',
 ];
-
-// TODO: change Integration#expireBehavior to this and clean up Integration
 /**
  * The behavior of expiring subscribers for Integrations. This can be:
  * * REMOVE_ROLE

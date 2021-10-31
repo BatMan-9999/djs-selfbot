@@ -189,7 +189,6 @@ class ApplicationCommand extends Base {
       ('version' in command && command.version !== this.version) ||
       (commandType && commandType !== this.type) ||
       // Future proof for options being nullable
-      // TODO: remove ?? 0 on each when nullable
       (command.options?.length ?? 0) !== (this.options?.length ?? 0) ||
       (command.defaultPermission ?? command.default_permission ?? true) !== this.defaultPermission
     ) {
@@ -334,6 +333,7 @@ class ApplicationCommand extends Base {
 module.exports = ApplicationCommand;
 
 /* eslint-disable max-len */
+/* eslint no-warning-comments: "error" */
 /**
  * @external APIApplicationCommand
  * @see {@link https://discord.com/developers/docs/interactions/application-commands#application-command-object-application-command-structure}

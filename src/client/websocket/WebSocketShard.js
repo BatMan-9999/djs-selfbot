@@ -600,26 +600,22 @@ class WebSocketShard extends EventEmitter {
 
     // Clone the identify payload and assign the token and shard info
     const d = {
-      /*...client.options.ws,
-      intents: Intents.resolve(client.options.intents),
-      token: client.token,
-      shard: [this.id, Number(client.options.shardCount)],*/
       token: client.token,
       capabilities: 125,
       properties: superproperties,
       presence: {
-        status: "online",
+        status: 'online',
         since: 0,
         activities: [],
-        afk: false
+        afk: false,
       },
       compress: false,
       client_state: {
         guild_hashes: {},
         highest_last_message_id: 0,
         read_state_version: 0,
-        user_guild_settings_version: -1
-      }
+        user_guild_settings_version: -1,
+      },
     };
 
     this.debug(`[IDENTIFY] Shard ${this.id}/${client.options.shardCount} with intents: ${d.intents}`);

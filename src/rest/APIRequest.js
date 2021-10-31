@@ -38,16 +38,16 @@ class APIRequest {
         : `${this.client.options.http.api}/v${this.client.options.http.version}`;
     const url = API + this.path;
 
-    let strs = "abcdefghijklmnopqrstuvwxyz0123456789".split("");
-    let ranstr = (l) => new Array(l).fill(0).map(_ => strs[Math.floor(Math.random() * strs.length)]);
+    let strs = 'abcdefghijklmnopqrstuvwxyz0123456789'.split('');
+    let ranstr = l => new Array(l).fill(0).map(() => strs[Math.floor(Math.random() * strs.length)]);
 
     let headers = {
       ...this.client.options.http.headers,
-      "User-Agent": this.fullUserAgent,
-      "X-Debug-Options": "canary,bugReporterEnabled",
-      "X-Super-Properties": soupproperties,
-      "Origin": "https://canary.discord.com",
-      "Cookie": `__dcfuid=${ranstr(32)}; __sdcfduid=${ranstr(96)}; __cfruid=${ranstr(40)}`
+      'User-Agent': this.fullUserAgent,
+      'X-Debug-Options': 'canary,bugReporterEnabled',
+      'X-Super-Properties': soupproperties,
+      Origin: 'https://canary.discord.com',
+      Cookie: `__dcfuid=${ranstr(32)}; __sdcfduid=${ranstr(96)}; __cfruid=${ranstr(40)}`,
     };
 
     if (this.options.auth !== false) headers.Authorization = this.rest.getAuth();

@@ -1,45 +1,40 @@
 'use strict';
 
-const { ClientApplicationAssetTypes, Endpoints } = require('../../util/Constants');
-const SnowflakeUtil = require('../../util/SnowflakeUtil');
 const Base = require('../Base');
-
-const AssetTypes = Object.keys(ClientApplicationAssetTypes);
 
 /**
  * Represents an OAuth2 Application.
  * @abstract
  */
+
+/* eslint-disable no-useless-constructor */
+
 class Application extends Base {
-  constructor(client, data) {
+  constructor(client) {
     super(client);
-    this._patch(data);
   }
 
-  _patch(data) {
-    /**
-     * The application's id
-     * @type {Snowflake}
-     */
-    this.id = data.id;
-
-    /**
-     * The name of the application
-     * @type {?string}
-     */
-    this.name = data.name ?? this.name ?? null;
-
-    /**
-     * The application's description
-     * @type {?string}
-     */
-    this.description = data.description ?? this.description ?? null;
-
-    /**
-     * The application's icon hash
-     * @type {?string}
-     */
-    this.icon = data.icon ?? this.icon ?? null;
+  _patch() {
+    // /**
+    //  * The application's id
+    //  * @type {Snowflake}
+    //  */
+    // this.id = data.id;
+    // /**
+    //  * The name of the application
+    //  * @type {?string}
+    //  */
+    // this.name = data.name ?? this.name ?? null;
+    // /**
+    //  * The application's description
+    //  * @type {?string}
+    //  */
+    // this.description = data.description ?? this.description ?? null;
+    // /**
+    //  * The application's icon hash
+    //  * @type {?string}
+    //  */
+    // this.icon = data.icon ?? this.icon ?? null;
   }
 
   /**
@@ -48,7 +43,7 @@ class Application extends Base {
    * @readonly
    */
   get createdTimestamp() {
-    return SnowflakeUtil.deconstruct(this.id).timestamp;
+    return 0;
   }
 
   /**
@@ -57,7 +52,8 @@ class Application extends Base {
    * @readonly
    */
   get createdAt() {
-    return new Date(this.createdTimestamp);
+    return new Date(0);
+    // Return new Date(this.createdTimestamp);
   }
 
   /**
@@ -65,9 +61,10 @@ class Application extends Base {
    * @param {StaticImageURLOptions} [options={}] Options for the Image URL
    * @returns {?string}
    */
-  iconURL({ format, size } = {}) {
-    if (!this.icon) return null;
-    return this.client.rest.cdn.AppIcon(this.id, this.icon, { format, size });
+  iconURL() {
+    return 'https://cdn.discordapp.com/embed/avatars/0.png';
+    // If (!this.icon) return null;
+    // return this.client.rest.cdn.AppIcon(this.id, this.icon, { format, size });
   }
 
   /**
@@ -75,9 +72,10 @@ class Application extends Base {
    * @param {StaticImageURLOptions} [options={}] Options for the Image URL
    * @returns {?string}
    */
-  coverURL({ format, size } = {}) {
-    if (!this.cover) return null;
-    return Endpoints.CDN(this.client.options.http.cdn).AppIcon(this.id, this.cover, { format, size });
+  coverURL() {
+    return 'https://cdn.discordapp.com/embed/avatars/0.png';
+    // If (!this.cover) return null;
+    // return Endpoints.CDN(this.client.options.http.cdn).AppIcon(this.id, this.cover, { format, size });
   }
 
   /**
@@ -92,13 +90,14 @@ class Application extends Base {
    * Gets the application's rich presence assets.
    * @returns {Promise<Array<ApplicationAsset>>}
    */
-  async fetchAssets() {
-    const assets = await this.client.api.oauth2.applications(this.id).assets.get();
-    return assets.map(a => ({
-      id: a.id,
-      name: a.name,
-      type: AssetTypes[a.type - 1],
-    }));
+  fetchAssets() {
+    return [];
+    // Const assets = await this.client.api.oauth2.applications(this.id).assets.get();
+    // return assets.map(a => ({
+    //   id: a.id,
+    //   name: a.name,
+    //   type: AssetTypes[a.type - 1],
+    // }));
   }
 
   /**
@@ -110,11 +109,13 @@ class Application extends Base {
    * console.log(`Application name: ${application}`);
    */
   toString() {
-    return this.name;
+    return 'Application';
+    // Return this.name;
   }
 
   toJSON() {
-    return super.toJSON({ createdTimestamp: true });
+    return {};
+    // Return super.toJSON({ createdTimestamp: true });
   }
 }
 
